@@ -8,10 +8,27 @@ def bubble_sort(array):
                 array[j], array[j + 1] = array[j + 1], array[j]
 
     return array
-
-
 # O(n2) - bubble sort
-x = numpy.random.randint(0, 100000, 100000)
+
+
+def insertion_sort(array):
+    for i in range(1, len(array)):
+        key = array[i]
+        j = i - 1
+
+        while j >= 0 and key < array[j]:
+            array[j + 1] = array[j]
+            j -= 1
+
+        array[j + 1] = key
+
+    return array
+
+# O(n2) - bad insertion sort
+# O(n) - best insertion sort
+
+
+x = numpy.random.randint(0, 100, 100)
 
 print(x)
-print(bubble_sort(x))
+print(insertion_sort(x))
