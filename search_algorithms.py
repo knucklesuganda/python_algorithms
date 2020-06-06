@@ -1,43 +1,34 @@
-import datetime
-import numpy
-
-
-def find_num(array, key):
+def linear_search(array, key):
     for i in range(len(array)):
         if array[i] == key:
             return i
-
     return -1
+    
+
+# n - length of array
+# O(n) - linear search
 
 
 def binary_search(array, key):
-    lower_bound = 0
-    upper_bound = len(array) - 1
+    if sorted(array) != array:
+        raise ValueError("Array must be sorted")
 
-    while lower_bound <= upper_bound:
-        center = (lower_bound + upper_bound) // 2
+    start = 0
+    end = len(array)
+
+    while start <= end:
+        center = (start + end) // 2
 
         if array[center] == key:
             return center
-
         elif array[center] > key:
-            upper_bound = center - 1
+            end = center - 1
         elif array[center] < key:
-            lower_bound = center + 1
-
+            start = center + 1
     return -1
 
 
-# O(n) - linear search
 # O(log(n)) - binary search
+arr = [0, 3, 1, -10, 200]
+print(binary_search(sorted(arr), 5))
 
-x = numpy.random.randint(0, 10000, 100000)
-
-print("Array created")
-
-x = sorted(x)
-print("Array sorted")
-
-start = datetime.datetime.now()
-print(find_num(x, 1023))
-print("End time:", datetime.datetime.now() - start)
